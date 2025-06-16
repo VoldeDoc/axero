@@ -1,0 +1,125 @@
+.gradient-shimmer {
+  background: linear-gradient(
+    -45deg,
+    #22c55e,
+    #16a34a,
+    #15803d,
+    #166534,
+    #22c55e
+  );
+  background-size: 400% 400%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Desktop Word animation styles */
+.word-container {
+  position: relative;
+  display: inline-block;
+  height: 1.2em;
+  width: 280px; /* Increased for larger text */
+  vertical-align: top;
+}
+
+.word-item {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  white-space: nowrap;
+}
+
+.word-item.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Mobile Word animation styles */
+.word-container-mobile {
+  position: relative;
+  display: inline-block;
+  height: 1.2em;
+  width: 140px;
+  vertical-align: top;
+}
+
+.word-item-mobile {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  transform: translateX(-50%) translateY(15px);
+  white-space: nowrap;
+  font-size: 1em;
+}
+
+.word-item-mobile.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Large screen adjustments */
+@media (min-width: 1024px) {
+  .word-container {
+    width: 320px; /* Even larger for lg screens */
+  }
+}
+
+@media (min-width: 1280px) {
+  .word-container {
+    width: 380px; /* Largest for xl screens */
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .word-container-mobile {
+    width: 120px;
+    height: 1.1em;
+  }
+  
+  .word-item-mobile {
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 480px) {
+  .word-container-mobile {
+    width: 110px;
+  }
+  
+  .word-item-mobile {
+    font-size: 0.9em;
+  }
+}
