@@ -7,6 +7,7 @@ import PlatformOverview from "@/components/Ui/PlatformOverview";
 import IntegrationsShowcase from "@/components/Ui/Integrations";
 import CopilotShowcase from "@/components/Ui/CopilotShowCase";
 import MobileAppShowcase from "@/components/Ui/MobileAppUse";
+import SecurityHighlight from "@/components/Ui/SecurityHilights";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <IntegrationsShowcase/>
         <CopilotShowcase/>
         <ChatButton />
+        <SecurityHighlight/>
         <MobileAppShowcase/>
         <Testimonials/>
       </>
