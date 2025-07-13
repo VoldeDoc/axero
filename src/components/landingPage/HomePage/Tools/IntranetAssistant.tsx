@@ -12,38 +12,38 @@ interface ChatMessage {
   timestamp: Date;
 }
 
-interface RoomContext {
-  hotelName?: string;
-  roomType?: string;
-  price?: number;
-  amenities?: string[];
+interface IntranetContext {
+  department?: string;
+  team?: string;
   location?: string;
-  rating?: number;
+  announcement?: string;
+  policies?: string[];
+  events?: string[];
   description?: string;
   images?: string[];
 }
 
-interface RoomChatAssistantProps {
-  roomContext?: RoomContext;
+interface IntranetAssistantProps {
+  intranetContext?: IntranetContext;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function RoomChatAssistant({
-  roomContext,
+export default function IntranetAssistant({
+  intranetContext,
   isOpen,
   onClose,
-}: RoomChatAssistantProps) {
+}: IntranetAssistantProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      content: roomContext
-        ? `Hi! I'm here to help you with questions about ${
-            roomContext.hotelName || "this hotel"
-          } and the ${
-            roomContext.roomType || "room"
+      content: intranetContext
+        ? `Hi! I'm your Intranet Assistant. I can help you with questions about ${
+            intranetContext.department || "your department"
+          }${intranetContext.team ? `, the ${intranetContext.team} team` : ""}${
+            intranetContext.location ? ` at ${intranetContext.location}` : ""
           }. What would you like to know?`
-        : "Hi! I'm here to help you with any hotel or travel questions. What would you like to know?",
+        : "Hi! I'm your Intranet Assistant. How can I help you today?",
       timestamp: new Date(),
     },
   ]);
@@ -84,13 +84,13 @@ export default function RoomChatAssistant({
   const generateAIResponse = async (question: string): Promise<string> => {
     const response = await AIVirtualAssistant(
       question,
-      roomContext || {},
+      intranetContext || {},
       messages
     );
 
-    if (roomContext) {
+    if (intranetContext) {
       return `Based on the information about ${
-        roomContext.hotelName || "this hotel"
+        intranetContext.department || "your department"
       }, here's what I can tell you about "${question}": ${response}`;
     } else {
       return `Here's what I can tell you about "${question}": ${response}`;
@@ -153,20 +153,20 @@ export default function RoomChatAssistant({
     }, 100);
   };
 
-  const quickQuestions = roomContext
+  const quickQuestions = intranetContext
     ? [
-        "What amenities are included?",
-        "What's the cancellation policy?",
-        "Is breakfast included?",
-        "What's nearby the hotel?",
-        "How far is it from the airport?",
+        "What are the latest announcements?",
+        "How do I request time off?",
+        "Where can I find company policies?",
+        "Who do I contact for IT support?",
+        "What events are coming up?",
       ]
     : [
-        "How do I find the best hotel deals?",
-        "What should I look for when booking?",
-        "What amenities are most important?",
-        "How far in advance should I book?",
-        "What's the difference between room types?",
+        "How do I find HR documents?",
+        "Where can I see company news?",
+        "How do I join a team event?",
+        "How do I update my profile?",
+        "Where can I find the employee directory?",
       ];
 
   if (!isOpen) return null;
@@ -182,23 +182,23 @@ export default function RoomChatAssistant({
       {/* Chat Panel */}
       <div className="fixed right-0 top-0 h-full w-full max-w-md bg-white dark:bg-gray-800 shadow-xl transform transition-transform flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-green-500 to-green-600 flex-shrink-0">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-600 to-blue-700 flex-shrink-0">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
               <SparklesIcon className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h3 className="font-semibold text-white">Hotel Assistant</h3>
-              <p className="text-sm text-green-100">
-                {roomContext
-                  ? "Ask about this room"
-                  : "Ask me anything about hotels"}
+              <h3 className="font-semibold text-white">Intranet Assistant</h3>
+              <p className="text-sm text-blue-100">
+                {intranetContext
+                  ? "Ask about your department or company"
+                  : "Ask me anything about your workplace"}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-white hover:text-green-100 transition-colors"
+            className="text-white hover:text-blue-100 transition-colors"
           >
             <XMarkIcon className="w-6 h-6" />
           </button>
@@ -220,7 +220,7 @@ export default function RoomChatAssistant({
               <div
                 className={`max-w-[85%] p-3 rounded-lg ${
                   message.role === "user"
-                    ? "bg-green-500 text-white rounded-br-sm"
+                    ? "bg-blue-600 text-white rounded-br-sm"
                     : "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-bl-sm"
                 }`}
               >
@@ -230,7 +230,7 @@ export default function RoomChatAssistant({
                 <p
                   className={`text-xs mt-2 ${
                     message.role === "user"
-                      ? "text-green-100"
+                      ? "text-blue-100"
                       : "text-gray-500 dark:text-gray-400"
                   }`}
                 >
@@ -277,7 +277,7 @@ export default function RoomChatAssistant({
                 <button
                   key={index}
                   onClick={() => handleQuickQuestion(question)}
-                  className="w-full text-left text-sm p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-all duration-200 shadow-sm"
+                  className="w-full text-left text-sm p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 shadow-sm"
                 >
                   {question}
                 </button>
@@ -296,17 +296,17 @@ export default function RoomChatAssistant({
               onChange={(e) => setInputMessage(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder={
-                roomContext
-                  ? "Ask about this room..."
-                  : "Ask me anything about hotels..."
+                intranetContext
+                  ? "Ask about your department or company..."
+                  : "Ask me anything about your workplace..."
               }
-              className="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-sm"
+              className="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-sm"
               disabled={isLoading}
             />
             <button
               onClick={handleSendMessage}
               disabled={!inputMessage.trim() || isLoading}
-              className="px-4 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex-shrink-0"
+              className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex-shrink-0"
             >
               <PaperAirplaneIcon className="w-5 h-5" />
             </button>

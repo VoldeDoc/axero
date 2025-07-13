@@ -1,39 +1,40 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
-import RoomChatAssistant from './RoomcChatAssistant';
+import IntranetAssistant from './IntranetAssistant';
 
-interface RoomContext {
-  hotelName?: string;
-  roomType?: string;
-  price?: number;
-  amenities?: string[];
+// Define the correct context for the intranet assistant
+interface IntranetContext {
+  department?: string;
+  team?: string;
   location?: string;
-  rating?: number;
+  announcement?: string;
+  policies?: string[];
+  events?: string[];
   description?: string;
   images?: string[];
 }
 
 interface ChatButtonProps {
-  roomContext?: RoomContext;
+  intranetContext?: IntranetContext;
   className?: string;
 }
 
-export default function ChatButton({ roomContext, className = '' }: ChatButtonProps) {
+export default function ChatButton({ intranetContext, className = '' }: ChatButtonProps) {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
     <>
       <button
         onClick={() => setIsChatOpen(true)}
-        className={`fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-50 ${className}`}
-        title="Ask AI Assistant"
-        aria-label="Open AI Chat Assistant"
+        className={`fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-50 ${className}`}
+        title="Ask Intranet Assistant"
+        aria-label="Open Intranet Assistant"
       >
         <ChatBubbleLeftRightIcon className="w-6 h-6" />
       </button>
 
-      <RoomChatAssistant
-        roomContext={roomContext}
+      <IntranetAssistant
+        intranetContext={intranetContext}
         isOpen={isChatOpen}
         onClose={() => setIsChatOpen(false)}
       />
