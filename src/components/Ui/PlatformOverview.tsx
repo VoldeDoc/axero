@@ -237,7 +237,7 @@ const PlatformOverview = () => {
   };
 
   return (
-    <div className="relative py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-950 dark:via-blue-950 dark:to-indigo-950 overflow-hidden">
+    <div className="relative py-16 sm:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-950 dark:via-blue-950 dark:to-indigo-950 overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0">
         <motion.div
@@ -276,11 +276,11 @@ const PlatformOverview = () => {
         ))}
       </div>
 
-      <div ref={containerRef} className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div ref={containerRef} className="container mx-auto px-2 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-center">
           {/* Left Side - Animated Platform */}
           <motion.div
-            className="relative h-[600px]"
+            className="relative h-[340px] sm:h-[420px] md:h-[520px] lg:h-[600px] w-full overflow-x-auto"
             initial={{ opacity: 0, x: -100 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
@@ -298,7 +298,7 @@ const PlatformOverview = () => {
             {/* Header */}
             <div className="space-y-6">
               <motion.h2
-                className="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -317,7 +317,7 @@ const PlatformOverview = () => {
               </motion.h2>
 
               <motion.h3
-                className="text-3xl lg:text-4xl font-semibold text-gray-800 dark:text-gray-200"
+                className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 dark:text-gray-200"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.8 }}
@@ -333,7 +333,7 @@ const PlatformOverview = () => {
               </motion.h3>
 
               <motion.p
-                className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
+                className="text-base sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 1 }}
