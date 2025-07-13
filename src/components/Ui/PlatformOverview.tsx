@@ -65,7 +65,7 @@ const PlatformOverview = () => {
           }}
         >
           <motion.div
-            className="w-32 h-32 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl"
+            className="w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl"
             animate={{
               boxShadow: [
                 "0 0 40px rgba(59, 130, 246, 0.4)",
@@ -77,7 +77,7 @@ const PlatformOverview = () => {
             transition={{ duration: 4, repeat: Infinity }}
           >
             <motion.div
-              className="text-4xl font-bold text-white"
+              className="text-3xl sm:text-4xl font-bold text-white"
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
@@ -107,7 +107,7 @@ const PlatformOverview = () => {
         {/* Orbiting Data Sources */}
         {Array.from({ length: 8 }).map((_, i) => {
           const angle = (i * 360) / 8;
-          const radius = 180;
+          const radius = window.innerWidth < 640 ? 90 : 180; // Responsive radius
           const x = Math.cos((angle * Math.PI) / 180) * radius;
           const y = Math.sin((angle * Math.PI) / 180) * radius;
           
@@ -136,7 +136,7 @@ const PlatformOverview = () => {
               }}
             >
               <motion.div
-                className="w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-lg backdrop-blur-lg border border-white/20"
+                className="w-10 h-10 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-xl sm:text-2xl shadow-lg backdrop-blur-lg border border-white/20"
                 style={{
                   background: `linear-gradient(135deg, ${colors[i]}20, ${colors[i]}40)`,
                   boxShadow: `0 8px 32px ${colors[i]}30`
@@ -160,7 +160,7 @@ const PlatformOverview = () => {
 
               {/* Data flow lines */}
               <motion.div
-                className="absolute top-1/2 left-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent origin-left"
+                className="absolute top-1/2 left-1/2 w-16 sm:w-32 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent origin-left"
                 style={{
                   transform: `translate(-50%, -50%) rotate(${angle + 180}deg)`
                 }}
@@ -183,15 +183,15 @@ const PlatformOverview = () => {
         {Array.from({ length: 12 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-blue-400 rounded-full"
+            className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full"
             style={{
               left: `${20 + Math.random() * 60}%`,
               top: `${20 + Math.random() * 60}%`
             }}
             animate={{
-              y: [0, -50, 0],
-              x: [0, Math.random() * 40 - 20, 0],
-              scale: [0.5, 1.5, 0.5],
+              y: [0, -30, 0],
+              x: [0, Math.random() * 20 - 10, 0],
+              scale: [0.5, 1.2, 0.5],
               opacity: [0.3, 1, 0.3]
             }}
             transition={{
@@ -212,7 +212,7 @@ const PlatformOverview = () => {
           {Array.from({ length: 6 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-16 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400"
+              className="absolute w-10 sm:w-16 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400"
               style={{
                 left: '50%',
                 top: '50%',
@@ -237,7 +237,7 @@ const PlatformOverview = () => {
   };
 
   return (
-    <div className="relative py-16 sm:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-950 dark:via-blue-950 dark:to-indigo-950 overflow-hidden">
+    <div className="relative py-12 sm:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-950 dark:via-blue-950 dark:to-indigo-950 overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0">
         <motion.div
@@ -280,7 +280,7 @@ const PlatformOverview = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-center">
           {/* Left Side - Animated Platform */}
           <motion.div
-            className="relative h-[340px] sm:h-[420px] md:h-[520px] lg:h-[600px] w-full overflow-x-auto"
+            className="relative h-[260px] sm:h-[420px] md:h-[520px] lg:h-[600px] w-full"
             initial={{ opacity: 0, x: -100 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
@@ -298,7 +298,7 @@ const PlatformOverview = () => {
             {/* Header */}
             <div className="space-y-6">
               <motion.h2
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight"
+                className="text-3xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -317,7 +317,7 @@ const PlatformOverview = () => {
               </motion.h2>
 
               <motion.h3
-                className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 dark:text-gray-200"
+                className="text-xl sm:text-3xl lg:text-4xl font-semibold text-gray-800 dark:text-gray-200"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.8 }}
@@ -402,7 +402,7 @@ const PlatformOverview = () => {
 
                   <div className="flex items-start space-x-4">
                     <motion.div
-                      className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+                      className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl sm:text-2xl"
                       style={{
                         background: `linear-gradient(135deg, ${feature.color}20, ${feature.color}40)`
                       }}
@@ -417,7 +417,7 @@ const PlatformOverview = () => {
 
                     <div className="flex-1 space-y-2">
                       <motion.h4
-                        className={`text-xl font-bold transition-colors duration-300 ${
+                        className={`text-lg sm:text-xl font-bold transition-colors duration-300 ${
                           activeFeature === index
                             ? 'text-gray-900 dark:text-white'
                             : 'text-gray-800 dark:text-gray-200'
@@ -430,7 +430,7 @@ const PlatformOverview = () => {
                       </motion.h4>
 
                       <motion.p
-                        className={`text-lg transition-colors duration-300 ${
+                        className={`text-base sm:text-lg transition-colors duration-300 ${
                           activeFeature === index
                             ? 'text-gray-700 dark:text-gray-300'
                             : 'text-gray-600 dark:text-gray-400'
@@ -453,7 +453,7 @@ const PlatformOverview = () => {
                       transition={{ duration: 1.5, repeat: activeFeature === index ? Infinity : 0 }}
                     >
                       <svg
-                        className="w-6 h-6"
+                        className="w-5 h-5 sm:w-6 sm:h-6"
                         style={{ color: feature.color }}
                         fill="none"
                         stroke="currentColor"
@@ -478,21 +478,21 @@ const PlatformOverview = () => {
                           className="absolute w-1 h-1 rounded-full"
                           style={{ backgroundColor: feature.color }}
                           initial={{
-                            x: Math.random() * 300,
-                            y: Math.random() * 100,
+                            x: Math.random() * 120,
+                            y: Math.random() * 40,
                             scale: 0,
                             opacity: 0
                           }}
                           animate={{
                             x: [
-                              Math.random() * 300,
-                              Math.random() * 350,
-                              Math.random() * 300
+                              Math.random() * 120,
+                              Math.random() * 140,
+                              Math.random() * 120
                             ],
                             y: [
-                              Math.random() * 100,
-                              Math.random() * 120,
-                              Math.random() * 100
+                              Math.random() * 40,
+                              Math.random() * 60,
+                              Math.random() * 40
                             ],
                             scale: [0, 1, 0],
                             opacity: [0, 0.6, 0]
@@ -519,7 +519,7 @@ const PlatformOverview = () => {
               transition={{ duration: 0.8, delay: 2.2 }}
             >
               <motion.button
-                className="group relative px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 text-white font-bold text-lg rounded-2xl shadow-2xl overflow-hidden"
+                className="group relative px-8 sm:px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 text-white font-bold text-base sm:text-lg rounded-2xl shadow-2xl overflow-hidden"
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: "0 25px 50px rgba(59, 130, 246, 0.4)"
