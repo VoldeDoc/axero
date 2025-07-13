@@ -1,4 +1,4 @@
-import logo from "../../public/assets/images/logo.png";
+import logo from "../../public/afsmyj5hkqp-bg-removed-VizXpress.png";
 
 interface LoadingType {
   message?: string;

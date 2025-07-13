@@ -6,9 +6,6 @@ import Loading from "@/utils/Loading";
 ;
 import Home from "./pages/home/home_page";
 import NotFound from './pages/home/notFound/notFound';
-import ButtonT from './pages/Ui/button';
-import ExampleForm from './pages/Ui/textinput';
-import SearchResults from './components/landingPage/HomePage/SeatchResults';
 
 
 function App() {
@@ -35,9 +32,6 @@ function App() {
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Home />} />
-              <Route path="/search-results" element={<SearchResults />} />
-              <Route path="/ui/button" element={<ButtonT />} />
-              <Route path="/ui/textinput" element={<ExampleForm />} />
             </Routes>
           </>
         )}

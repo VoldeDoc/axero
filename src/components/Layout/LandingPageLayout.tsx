@@ -1,7 +1,7 @@
 
 import Navbar from "@/components/Layout/header/navbar"
 import Footer from "./footer/footer"
-import Headline from "./header/Tools/Headline"
+// import Headline from "./header/Tools/Headline"
 interface Props {
     children: React.ReactNode
     }
@@ -9,7 +9,7 @@ interface Props {
 export default function LandingPageLayout({ children }: Props) {
   return (
     <>
-    <Headline/>
+    {/* <Headline/> */}
     <Navbar/>
     <main>
         {children}
