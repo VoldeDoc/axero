@@ -1,5 +1,3 @@
-import logo from "../../public/afsmyj5hkqp-bg-removed-VizXpress.png";
-
 interface LoadingType {
   message?: string;
 }
@@ -29,7 +27,11 @@ const Loading = ({ message }: LoadingType) => {
       </svg>
 
       <div className="mt-4">
-        <img src={logo} alt="Logo" className="max-w-xs max-h-25" />
+        <img
+          src="/assets/images/afsmyj5hkqp-bg-removed-VizXpress.png"
+          alt="Logo"
+          className="max-w-xs max-h-25"
+        />
       </div>
 
       <span className="inline-block mt-4 font-medium text-sm">{message}</span>
