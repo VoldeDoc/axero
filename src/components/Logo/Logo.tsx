@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { logo } from '../../../public';
 
 const Logo: React.FC = () => {
   return (
@@ -8,7 +7,7 @@ const Logo: React.FC = () => {
       <Link to="/">
         <img
           className="w-24 h-24 xl:w-32 xl:h-32"
-          src={logo}
+          src="/assets/images/afsmyj5hkqp-bg-removed-VizXpress.png"
           alt="Logo"
         />
       </Link>
